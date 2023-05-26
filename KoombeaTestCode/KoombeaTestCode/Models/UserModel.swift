@@ -23,7 +23,7 @@ struct UserModel: Decodable, Identifiable, Hashable {
     
     
     var fullName: String {
-        firstName + lastName
+        "\(firstName) \(lastName)"
     }
     
     var urlImage: URL? {

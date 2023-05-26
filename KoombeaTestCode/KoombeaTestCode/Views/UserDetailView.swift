@@ -13,18 +13,24 @@ struct UserDetailView: View {
     
     var body: some View {
         
-        VStack {
+        VStack(spacing: 15) {
             
             if let image = userModel.urlImage {
-                AsyncImage(url: image)
-                     .frame(maxWidth: 50, maxHeight: 50)
-                     .clipShape(Circle())
-
+                AsyncImage(url: image){ image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                } placeholder: {
+                    ProgressView()
+                }
+                .frame(maxWidth: 150, maxHeight: 150)
+                .clipShape(Circle())
+                
             } else {
-               Image(systemName: "person.circle")
+                Image(systemName: "person.circle")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: 50, maxHeight: 50)
+                    .frame(width: 150, height: 150)
             }
             
             Text(userModel.fullName)

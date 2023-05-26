@@ -16,9 +16,15 @@ struct UserItemListView: View {
         HStack {
             
             if let image = userModel.urlImage {
-                AsyncImage(url: image)
-                     .frame(maxWidth: 50, maxHeight: 50)
-                     .clipShape(Circle())
+                AsyncImage(url: image){ image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                } placeholder: {
+                    ProgressView()
+                }
+                .frame(maxWidth: 50, maxHeight: 50)
+                .clipShape(Circle())
 
             } else {
                Image(systemName: "person.circle")
